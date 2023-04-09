@@ -18,10 +18,14 @@ const output = process.argv[3];
         deviceScaleFactor: 2,
     });
     await page.goto(url);
-    await page.waitForNetworkIdle({
-        idleTime: 1000,
-        timeout: 30000,
-    });
+    try {
+        await page.waitForNetworkIdle({
+            idleTime: 1000,
+            timeout: 30000,
+        });
+    } catch (e) {
+        console.error(e);
+    }
 
     await page.screenshot({path: output});
     await browser.close();
