@@ -14,14 +14,14 @@ rm -rf inkstand.png
 time node index.js http://127.0.0.1:8000/ inkstand.png
 popd
 
-SHOWIMG_ARGS="--vcom 2150 --rotate 90"
+SHOWIMG_ARGS="--mode gl16"
 if [ $(date +%M) -eq 0 ]; then
-    SHOWIMG_ARGS="$SHOWIMG_ARGS --reset"
+    SHOWIMG_ARGS="--mode gc16"
 fi
 
 for i in {1..5}; do
     sleep 3
-    if /root/showimg $SHOWIMG_ARGS screenshot/inkstand.png; then
+    if /root/showimg $SHOWIMG_ARGS --vcom 2150 --rotate 90 screenshot/inkstand.png; then
         exit 0
     fi
     usbreset 048d:8951
