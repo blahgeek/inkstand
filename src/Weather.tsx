@@ -10,7 +10,7 @@ const Weather: React.FunctionComponent = () => {
   const containerStyle = {
     width: `${width}px`,
     margin: '50px auto',
-    transform: 'scale(1.3)',
+    transform: 'scale(1.3)',  // the content in iframe is too small (the font size is fixed regardless the width)
     transformOrigin: 'center',
   };
 
