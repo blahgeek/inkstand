@@ -9,6 +9,9 @@ const Weather: React.FunctionComponent = () => {
 
   const containerStyle = {
     width: `${width}px`,
+    margin: '50px auto',
+    transform: 'scale(1.3)',
+    transformOrigin: 'center',
   };
 
   const containerRef = useCallback((node: HTMLDivElement) => {
