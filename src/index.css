@@ -1,5 +1,6 @@
 body {
-  margin: 0;
+  width: 520px;
+  margin: 40px auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -10,4 +11,36 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.date {
+  text-align: center;
+  font-size: 24px;
+  margin: 0;
+  font-family: 'Merriweather', serif;
+}
+
+.time {
+  text-align: center;
+  font-size: 64px;
+  margin: 0;
+  font-weight: bold;
+  font-family: 'Merriweather', serif;
+}
+
+.weather {
+  margin: 20px auto;
+}
+
+.xkcd {
+  width: 100%;
+  height: 300px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+iframe {
+  border: 0;
+  overflow: hidden;
 }
