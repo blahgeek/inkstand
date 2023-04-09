@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 
 
 const RandomWithSeed = function(seed: number) {
-  const x = Math.sin(seed) * 10000;
+  const x = Math.cos(seed) * 10000;
   return x - Math.floor(x);
 };
 

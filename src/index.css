@@ -1,5 +1,5 @@
 body {
-  width: 520px;
+  width: 510px;
   margin: 40px auto;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -26,6 +26,10 @@ code {
   margin: 0;
   font-weight: bold;
   font-family: 'Merriweather', serif;
+}
+
+.weather {
+  margin: 15px auto;
 }
 
 .xkcd {

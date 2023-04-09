@@ -5,13 +5,19 @@ declare global {
 }
 
 const Weather: React.FunctionComponent = () => {
-  const width = 350;
+  const kWidth = 350;
+  const kHeight = 128;
+  const kScale = 1.5;
+
+  const outerContainerStyle = {
+    minHeight: `${kHeight * kScale}px`,
+  };
 
   const containerStyle = {
-    width: `${width}px`,
-    margin: '50px auto',
-    transform: 'scale(1.3)',  // the content in iframe is too small (the font size is fixed regardless the width)
-    transformOrigin: 'center',
+    width: `${kWidth}px`,
+    margin: '0px auto',  // I don't understand how margin work with scaling... let's disable margin and let other elements do this
+    transform: `scale(${kScale})`,  // the content in iframe is too small (the font size is fixed regardless the width)
+    transformOrigin: 'top center',
   };
 
   const containerRef = useCallback((node: HTMLDivElement) => {
@@ -21,8 +27,8 @@ const Weather: React.FunctionComponent = () => {
     window.WIDGET = {
       "CONFIG": {
         "layout": "1",
-        "width": `${width}`,
-        "height": "128",
+        "width": `${kWidth}`,
+        "height": `${kHeight}`,
         "background": "4",
         "dataColor": "000000",
         "backgroundColor": "FFFFFF",
@@ -35,8 +41,10 @@ const Weather: React.FunctionComponent = () => {
     node.appendChild(script);
   }, []);
   return (
-    <div className="weather" style={containerStyle} ref={containerRef}>
-      <div id="he-plugin-standard" />
+    <div className="weather" style={outerContainerStyle}>
+      <div style={containerStyle} ref={containerRef}>
+        <div id="he-plugin-standard" />
+      </div>
     </div>
   );
 };
