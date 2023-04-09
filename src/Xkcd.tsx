@@ -1,5 +1,4 @@
-import React, {useEffect} from 'react';
-
+import React, {useEffect, useState} from 'react';
 
 const RandomWithSeed = function(seed: number) {
   const x = Math.cos(seed) * 10000;
@@ -7,7 +6,8 @@ const RandomWithSeed = function(seed: number) {
 };
 
 const Xkcd: React.FunctionComponent = () => {
-  const [url, setUrl] = React.useState();
+  const [url, setUrl] = useState();
+  const [alt, setAlt] = useState();
 
   useEffect(() => {
     (async () => {
@@ -20,6 +20,7 @@ const Xkcd: React.FunctionComponent = () => {
       const randomNum = Math.floor(RandomWithSeed(daysSinceEpoch) * latestNum) + 1;
       const json = await (await fetch('https://xkcd.now.sh/?comic=' + randomNum)).json();
       setUrl(json.img);
+      setAlt(json.alt);
     })();
   }, []);
 
@@ -27,7 +28,10 @@ const Xkcd: React.FunctionComponent = () => {
     backgroundImage: 'url(' + url + ')',
   };
   return (
+  <>
     <div className="xkcd" style={style}></div>
+    <div className="xkcd-alt">{alt}</div>
+  </>
   );
 };
 
