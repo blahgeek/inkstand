@@ -2,6 +2,8 @@
 
 cd "$(dirname "$0")"
 
+find /tmp/snap-private-tmp/snap.chromium/tmp -name "puppeteer_dev_profile-*" -type d -exec rm -rf "{}" \;
+
 pushd build/
 python3 -m http.server 8000 &
 trap "kill %1" EXIT
