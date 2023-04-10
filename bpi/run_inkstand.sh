@@ -1,8 +1,11 @@
 #!/bin/bash -ex
 
+exec {lock_fd}>/tmp/inkstand.lock || exit 1
+flock -n $lock_fd
+
 cd "$(dirname "$0")"
 
-find /tmp/snap-private-tmp/snap.chromium/tmp -name "puppeteer_dev_chrome_profile-*" -type d -exec rm -rf "{}" \;
+find /tmp/snap-private-tmp/snap.chromium/tmp -name 'puppeteer_dev_chrome_profile-*' -type d -exec rm -rf "{}" \; || true
 
 pushd build/
 python3 -m http.server 8000 &
