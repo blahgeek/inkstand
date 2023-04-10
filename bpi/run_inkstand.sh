@@ -1,8 +1,5 @@
 #!/bin/bash -ex
 
-exec {lock_fd}>/tmp/inkstand.lock || exit 1
-flock -n $lock_fd
-
 cd "$(dirname "$0")"
 
 find /tmp/snap-private-tmp/snap.chromium/tmp -name 'puppeteer_dev_chrome_profile-*' -type d -exec rm -rf "{}" \; || true
@@ -16,7 +13,7 @@ sleep 1
 
 pushd screenshot/
 rm -rf inkstand.png
-time node index.js http://127.0.0.1:8000/ inkstand.png
+node index.js http://127.0.0.1:8000/ inkstand.png
 popd
 
 SHOWIMG_ARGS="--mode gl16"
