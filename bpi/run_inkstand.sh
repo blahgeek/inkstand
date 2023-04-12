@@ -21,6 +21,11 @@ if [ $(date +%M) -eq 0 ]; then
     SHOWIMG_ARGS="--mode gc16"
 fi
 
+# check if system uptime is within 3 minutes
+if [ $(awk '{print int($1)}' /proc/uptime) -lt 180 ]; then
+    SHOWIMG_ARGS="$SHOWIMG_ARGS --reset"
+fi
+
 for i in {1..5}; do
     sleep 3
     if /root/showimg $SHOWIMG_ARGS --vcom 2150 --rotate 90 screenshot/inkstand.png; then
