@@ -8,6 +8,8 @@ import Poster from './Poster';
 
 const kSpecialPosters: Record<string, string> = {
   '0507': '/images/happy_birthday.jpg',
+  '0510': '/images/anniversary.png',
+  '0621': '/images/anniversary.png',
 };
 
 function App() {
