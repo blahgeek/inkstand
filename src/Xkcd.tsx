@@ -1,5 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
+import Poster from './Poster';
+
 const RandomWithSeed = function(seed: number) {
   const x = Math.cos(seed) * 10000;
   return x - Math.floor(x);
@@ -19,6 +21,7 @@ const FetchJsonWithCache = async function(url: string, expireSec: number = 60 * 
   try {
     localStorage.setItem(cacheKey, JSON.stringify({
       data: data,
+
       expiry: Date.now() + expireSec * 1000,
     }));
   } catch (e) {
@@ -30,7 +33,7 @@ const FetchJsonWithCache = async function(url: string, expireSec: number = 60 * 
 
 const Xkcd: React.FunctionComponent = () => {
   const [url, setUrl] = useState();
-  const [alt, setAlt] = useState();
+  const [alt, setAlt] = useState('');
 
   useEffect(() => {
     (async () => {
@@ -47,15 +50,11 @@ const Xkcd: React.FunctionComponent = () => {
     })();
   }, []);
 
-  const style = {
-    backgroundImage: 'url(' + url + ')',
-  };
-  return (
-  <>
-    <div className="xkcd" style={style}></div>
-    <div className="xkcd-alt">{alt}</div>
-  </>
-  );
+  if (url !== undefined) {
+    return <Poster url={url} text={alt} />;
+  } else {
+    return <div>Loading...</div>;
+  }
 };
 
 export default Xkcd;
