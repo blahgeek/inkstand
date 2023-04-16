@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <DateTime />
       <Weather />
-      { kSpecialPosters[date] && <Poster url={kSpecialPosters[date]} /> || <Xkcd /> }
+      { (kSpecialPosters[date] && <Poster url={kSpecialPosters[date]} />) || <Xkcd /> }
     </div>
   );
 }
