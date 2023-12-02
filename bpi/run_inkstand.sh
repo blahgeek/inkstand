@@ -4,14 +4,14 @@ cd "$(dirname "$0")"
 
 find /tmp/snap-private-tmp/snap.chromium/tmp -name 'puppeteer_dev_chrome_profile-*' -type d -exec rm -rf "{}" \; || true
 
-timeout 3 python3 ./get_bme280.py > build/_environment.json
-
 pushd build/
-python3 -m http.server 8000 2>/dev/null &
+# "-e 0" disable caching.
+# python http.server would enable browser heuristic caching
+webfsd -F -e 0 -p 8000 -f index.html &
 trap "kill %1" EXIT
 popd
 
-sleep 1
+timeout 3 python3 ./get_bme280.py > build/_environment.json
 
 pushd screenshot/
 rm -rf inkstand.png
