@@ -21,7 +21,7 @@ const output = process.argv[3];
     await page.goto(url);
     try {
         await page.waitForNetworkIdle({
-            idleTime: 1000,
+            idleTime: 3000,
             timeout: 30000,
         });
     } catch (e) {
