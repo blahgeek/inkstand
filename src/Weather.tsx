@@ -11,6 +11,7 @@ const Weather: React.FunctionComponent = () => {
 
   const outerContainerStyle = {
     minHeight: `${kHeight * kScale}px`,
+    width: `${kWidth * kScale}px`,
   };
 
   const containerStyle = {

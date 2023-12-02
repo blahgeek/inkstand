@@ -9,7 +9,7 @@ const DateTime: React.FunctionComponent = () => {
   const time_str = moment().format('HH:mm');
 
   return (
-    <div>
+    <div className="datetime">
       <h2 className="date">{ date_str }</h2>
       <h1 className="time">{ time_str }</h1>
     </div>
