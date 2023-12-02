@@ -15,7 +15,7 @@ timeout 3 python3 ./get_bme280.py > build/_environment.json
 
 pushd screenshot/
 rm -rf inkstand.png
-timeout 60 node index.js http://127.0.0.1:8000/ inkstand.png 2> /dev/null
+timeout 60 node index.js http://127.0.0.1:8000/ inkstand.png
 popd
 
 SHOWIMG_ARGS="--mode gl16"

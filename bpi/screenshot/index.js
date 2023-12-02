@@ -6,18 +6,22 @@ const url = process.argv[2];
 const output = process.argv[3];
 
 (async () => {
-    const browser = await puppeteer.launch({
-        executablePath: '/usr/bin/chromium-browser',
-        userDataDir: './user_data',
-        args: ['--no-sandbox'],
+    const browser = await puppeteer.connect({
+        browserURL: 'http://127.0.0.1:9222',
     });
-    const page = await browser.newPage();
+    // close existing pages except first one
+    const pages = await browser.pages();
+    for (let i = 1; i < pages.length; i++) {
+        await pages[i].close();
+    }
+    const page = pages[0] ?? (await browser.newPage());
 
     await page.setViewport({
         width: 536,
         height: 724,
         deviceScaleFactor: 2,
     });
+    await page.goto('about:blank');
     await page.goto(url);
     try {
         await page.waitForNetworkIdle({
@@ -29,5 +33,5 @@ const output = process.argv[3];
     }
 
     await page.screenshot({path: output});
-    await browser.close();
+    browser.disconnect();
 })();
