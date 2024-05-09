@@ -3,6 +3,10 @@
 cd "$(dirname "$0")"
 
 find /tmp/snap-private-tmp/snap.chromium/tmp -name 'puppeteer_dev_chrome_profile-*' -type d -exec rm -rf "{}" \; || true
+if [ $(date +%M) -eq 23 ]; then
+    systemctl restart inkstand-browser.service
+    sleep 5
+fi
 
 pushd build/
 # "-e 0" disable caching.
