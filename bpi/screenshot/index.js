@@ -21,6 +21,16 @@ const output = process.argv[3];
         height: 724,
         deviceScaleFactor: 2,
     });
+
+    // page
+    //     .on('console', message =>
+    //         console.log(`${message.type().substr(0, 3).toUpperCase()} ${message.text()}`))
+    //     .on('pageerror', ({ message }) => console.log(message))
+    //     .on('response', response =>
+    //         console.log(`${response.status()} ${response.url()}`))
+    //     .on('requestfailed', request =>
+    //         console.log(`${request.failure().errorText} ${request.url()}`))
+
     await page.goto('about:blank');
     await page.goto(url);
     try {
