@@ -16,7 +16,17 @@ const Weather: React.FunctionComponent = () => {
           className="weatherwidget-io"
           href="https://forecast7.com/en/39d90116d41/beijing/"
           data-days="3"
-          data-theme="pure" >
+          data-theme="pure"
+          data-accent=""
+          data-textcolor=""
+          data-highcolor=""
+          data-lowcolor=""
+          data-suncolor=""
+          data-mooncolor=""
+          data-cloudcolor=""
+          data-cloudfill=""
+          data-raincolor=""
+          data-snowcolor="" >
             Beijing, China
         </a>
       </div>
