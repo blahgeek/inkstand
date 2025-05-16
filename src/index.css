@@ -1,3 +1,8 @@
+html {
+  /* disable scrollbar */
+  overflow-y: hidden;
+}
+
 body {
   max-width: 510px;
   margin: 40px auto;
