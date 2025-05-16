@@ -6,12 +6,13 @@ const Environment: React.FunctionComponent = () => {
   const [p, setP] = useState('??');
 
   useEffect(() => {
-    (async () => {
-      const data = await (await fetch('/_environment.json')).json();
-      setT(data.t.toFixed());
-      setH(data.h.toFixed());
-      setP(data.p.toFixed());
-    })();
+    const urlParams = new URLSearchParams(window.location.search);
+    const t = urlParams.get('env_t');
+    const h = urlParams.get('env_h');
+    const p = urlParams.get('env_p');
+    if (t) setT(t);
+    if (h) setH(h);
+    if (p) setP(p);
   }, []);
 
   return (
