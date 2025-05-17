@@ -49,14 +49,17 @@ def render_screenshot_cloud(env) -> bytes:
     }
     BASE_URL = 'https://inkstand.pages.dev/'
 
-    cf_account_id = os.environ['CF_ACCOUNT_ID']
-    cf_api_token = os.environ['CF_API_TOKEN']
+    # cloudflare render service limit is too low!!!
+    # cf_account_id = os.environ['CF_ACCOUNT_ID']
+    # cf_api_token = os.environ['CF_API_TOKEN']
+    # headers={
+    #     'Authorization': f'Bearer {cf_api_token}',
+    # },
+    # api_endpoint = f'https://api.cloudflare.com/client/v4/accounts/{cf_account_id}/browser-rendering/screenshot'
+    api_endpoint = f'https://inkstand-render-server.highgarden.blahgeek.com/screenshot?apiKey={os.environ['INKSTAND_RENDER_SERVER_APIKEY']}'
 
     resp = requests.post(
-        f'https://api.cloudflare.com/client/v4/accounts/{cf_account_id}/browser-rendering/screenshot',
-        headers={
-            'Authorization': f'Bearer {cf_api_token}',
-        },
+        api_endpoint,
         json={
             'url': BASE_URL + '?' + (
                 urllib.parse.urlencode({
@@ -64,6 +67,8 @@ def render_screenshot_cloud(env) -> bytes:
                     'env_p': str(int(env.pressure)),
                     'env_h': str(int(env.humidity)),
                 }) if env else ''),
+            # weather widget does not render for headless chrome
+            'userAgent': 'Mozilla/5.0 (X11; Linux x86_64; rv:138.0) Gecko/20100101 Firefox/138.0',
             'viewport': VIEWPORT,
             'gotoOptions': GOTO_OPTIONS,
         },
@@ -137,7 +142,7 @@ if __name__ == '__main__':
     try:
         env = read_environment()
         logging.info('Read environment: %s', env)
-    except (ImportError, IOError):
+    except (ImportError, OSError):
         logging.exception('Cannot read environment, skip')
 
     png_content = render_simple_locally() \
