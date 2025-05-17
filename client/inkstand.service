@@ -1,0 +1,7 @@
+[Unit]
+Description=Inkstand
+
+[Service]
+Type=simple
+Environment="PATH=/root/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ExecStart=/root/inkstand/run.sh /run/shm/inkstand.png --showimg /root/showimg
