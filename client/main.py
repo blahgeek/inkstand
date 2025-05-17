@@ -103,7 +103,7 @@ def showimg(binary_path: str, image_path: str):
     DEFAULT_ARGS = ['--vcom', '2.15', '--rotate', '90']
     USBID = '048d:8951'
 
-    mode = 'gc16' if int(time.time()) % 3600 == 0 else 'gl16'
+    mode = 'gc16' if datetime.datetime.now().minute == 0 else 'gl16'
     cmd = [binary_path, *DEFAULT_ARGS, '--mode', mode]
     if time.monotonic() < 180:
         cmd.append('--reset')
