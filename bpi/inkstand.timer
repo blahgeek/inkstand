@@ -1,9 +1,0 @@
-[Unit]
-Description=Run inkstand per minute
-
-[Timer]
-AccuracySec=1s
-OnCalendar=*-*-* *:*:00
-
-[Install]
-WantedBy=timers.target

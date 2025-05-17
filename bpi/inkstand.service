@@ -1,6 +1,0 @@
-[Unit]
-Description=Inkstand
-
-[Service]
-Type=simple
-ExecStart=/root/inkstand/run_inkstand.sh
